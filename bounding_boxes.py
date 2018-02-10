@@ -60,8 +60,9 @@ def bboxes():
                 cv2.drawContours(out, [c],0, (0,0,255), 3)
                 (x, y, w, h) = cv2.boundingRect(c)
                 cv2.rectangle(out, (x, y), (x + w, y + h), (255, 200, 100),  2, 1)
-                ellipse = cv.fitEllipse(cnt)
-                cv.ellipse(img,ellipse,(0,255,0),2)
+                if len(c) >= 5:
+                    ellipse = cv2.fitEllipse(c)
+                    cv2.ellipse(out,ellipse,(0,255,255),2)
                 # Rotated box
                 # rect = cv.minAreaRect(cnt)
                 # box = cv.boxPoints(rect)
